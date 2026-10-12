@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>UpMark – Master Your Preparation</title>
+  <!-- Font Awesome (for UI icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Fira Sans Condensed + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       GLOBAL RESET & VARIABLES
+       ============================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* New UpMark Color Palette */
+      --deep-navy: #011454;
+      --royal-blue: #093EA5;
+      --golden-orange: #EDA71B;
+      --pure-white: #FFFFFF;
+      
+      /* Derived shades */
+      --navy-light: #0b1f6e;
+      --blue-soft: #1a4fc9;
+      --gold-soft: #f5c34d;
+      --white-muted: rgba(255, 255, 255, 0.85);
+      --white-faint: rgba(255, 255, 255, 0.12);
+      --border-light: rgba(255, 255, 255, 0.08);
+      
+      --font-heading: 'Fira Sans Condensed', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 40px rgba(237, 167, 27, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--deep-navy);
+      background: linear-gradient(135deg, var(--deep-navy) 0%, var(--royal-blue) 100%);
+      min-height: 100vh;
+      color: var(--pure-white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--golden-orange);
+      border-radius: 3px;
+    }
+
+    /* ============================================
+       TYPOGRAPHY & UTILITIES
+       ============================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
+    }
+
+    a {
+      color: var(--golden-orange);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    a:hover {
+      color: var(--gold-soft);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .text-gold { color: var(--golden-orange); }
+    .text-white { color: var(--pure-white); }
+    .text-muted { color: var(--white-muted); }
+
+    /* ============================================
+       HEADER / NAVBAR
+       ============================================ */
+    .navbar {
+      width: 100%;
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 32px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(237, 167, 27, 0.4);
+      background: var(--deep-navy);
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .logo-text .up {
+      color: var(--pure-white);
+    }
+    .logo-text .mark {
+      color: var(--golden-orange);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-weight: 600;
+      font-size: 15px;
+      list-style: none;
+    }
+    .nav-links li a {
+      color: var(--pure-white);
+      opacity: 0.8;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      opacity: 1;
+      color: var(--golden-orange);
+    }
+    .nav-links li a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--golden-orange);
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      text-decoration: none;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: var(--golden-orange);
+      color: var(--deep-navy);
+      box-shadow: 0 4px 20px rgba(237, 167, 27, 0.35);
+    }
+    .btn-gold:hover {
+      background: var(--gold-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(237, 167, 27, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--pure-white);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+    .btn-outline:hover {
+      border-color: var(--golden-orange);
+      color: var(--golden-orange);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 8px 18px;
+      font-size: 13px;
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      padding: 40px 0 60px;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 480px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(237, 167, 27, 0.15);
+      color: var(--golden-orange);
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border: 1px solid rgba(237, 167, 27, 0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .hero-title .highlight {
+      color: var(--golden-orange);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(237, 167, 27, 0.25);
+      border-radius: 4px;
+      z-index: -1;
+    }
+
+    .hero-description {
+      font-size: 17px;
+      color: var(--white-muted);
+      max-width: 540px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      flex: 1 1 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo-showcase {
+      width: 280px;
+      height: 280px;
+      border-radius: 60px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glow);
+      backdrop-filter: blur(8px);
+      padding: 28px;
+      transition: var(--transition);
+    }
+    .logo-showcase:hover {
+      transform: scale(1.02);
+      border-color: rgba(237, 167, 27, 0.3);
+    }
+    .logo-showcase img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 40px;
+      background: var(--deep-navy);
+      padding: 16px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ============================================
+       STATS BAR
+       ============================================ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      width: 100%;
+      margin: 24px 0 56px;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+      transition: var(--transition);
+    }
+    .stat-item:hover {
+      border-color: rgba(237, 167, 27, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--golden-orange);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--white-muted);
+      font-weight: 600;
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================
+       SECTION TITLES
+       ============================================ */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-tag {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--golden-orange);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 800;
+      color: var(--pure-white);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--white-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       FEATURES GRID
+       ============================================ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      width: 100%;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      transition: var(--transition);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(237, 167, 27, 0.3);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: rgba(237, 167, 27, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--golden-orange);
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--pure-white);
+      font-family: var(--font-heading);
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--white-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    /* ============================================
+       SYLLABUS PREVIEW / TRACKER
+       ============================================ */
+    .tracker-showcase {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 80px;
+    }
+
+    .tracker-visual {
+      flex: 1 1 380px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      backdrop-filter: blur(4px);
+    }
+
+    .tracker-subject {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .tracker-subject:last-child {
+      border-bottom: none;
+    }
+    .tracker-subject-name {
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tracker-subject-name i {
+      color: var(--golden-orange);
+      width: 20px;
+      text-align: center;
+    }
+    .tracker-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tracker-bar {
+      width: 80px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .tracker-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--golden-orange);
+      transition: width 0.6s ease;
+    }
+    .tracker-pct {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--golden-orange);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    .tracker-text {
+      flex: 1 1 340px;
+    }
+    .tracker-text h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .tracker-text p {
+      color: var(--white-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--white-muted);
+    }
+    .check-list li i {
+      color: var(--golden-orange);
+      font-size: 18px;
+    }
+
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    .cta-section {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 80px;
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(237, 167, 27, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -60px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(9, 62, 165, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-section h2 {
+      font-size: 38px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section p {
+      color: var(--white-muted);
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      width: 100%;
+      border-top: 1px solid var(--border-light);
+      padding: 40px 0 30px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .footer-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .footer-logo .up { color: var(--pure-white); }
+    .footer-logo .mark { color: var(--golden-orange); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--white-muted);
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--white-muted);
+    }
+    .footer-links a:hover {
+      color: var(--golden-orange);
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 860px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px 0 40px;
+      }
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .logo-showcase {
+        width: 220px;
+        height: 220px;
+      }
+      .tracker-showcase {
+        flex-direction: column;
+        text-align: center;
+      }
+      .check-list li {
+        justify-content: center;
+      }
+      .cta-section {
+        padding: 40px 20px;
+      }
+      .cta-section h2 {
+        font-size: 28px;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0 12px;
+      }
+      .hero-title {
+        font-size: 34px;
+      }
+      .stat-number {
+        font-size: 28px;
+      }
+      .btn {
+        padding: 10px 22px;
+        font-size: 14px;
+      }
+      .feature-card {
+        padding: 24px 18px;
+      }
+      .tracker-visual {
+        padding: 18px;
+      }
+      .logo-showcase {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+  NAVBAR
+  ============================================ -->
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo-area">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%23011454'/%3E%3Ctext x='100' y='130' font-family='Arial' font-size='90' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EU%3C/text%3E%3Cpath d='M130 70 L160 45 L175 75 L155 75 L140 130 L120 130 L130 70Z' fill='%23EDA71B'/%3E%3Ctext x='100' y='175' font-family='Arial' font-size='32' font-weight='bold' fill='%23EDA71B' text-anchor='middle'%3EMark%3C/text%3E%3C/svg%3E" alt="UpMark Logo" class="logo-img">
+        <div class="logo-text">
+          <span class="up">Up</span><span class="mark">Mark</span>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tracker">Syllabus</a></li>
+        <li><a href="#drills">Drills</a></li>
+        <li><a href="#pyq">PYQ</a></li>
+      </ul>
+
+      <div>
+        <a href="#" class="btn btn-gold btn-sm"><i class="fas fa-rocket"></i> Launch App</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ============================================
+  HERO
+  ============================================ -->
+  <div class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-bolt"></i> Smart Exam Prep</div>
+        <h1 class="hero-title">
+          Master your <span class="highlight">preparation</span> with UpMark
+        </h1>
+        <p class="hero-description">
+          Track your syllabus, generate AI-powered daily to-dos, sharpen your speed with math drills, and access previous year papers — all in one powerful platform.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-gold"><i class="fas fa-arrow-right"></i> Get Started Free</a>
+          <a href="#features" class="btn btn-outline"><i class="fas fa-play"></i> See Features</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="logo-showcase">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%23011454'/%3E%3Ctext x='100' y='130' font-family='Arial' font-size='90' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EU%3C/text%3E%3Cpath d='M130 70 L160 45 L175 75 L155 75 L140 130 L120 130 L130 70Z' fill='%23EDA71B'/%3E%3Ctext x='100' y='175' font-family='Arial' font-size='32' font-weight='bold' fill='%23EDA71B' text-anchor='middle'%3EMark%3C/text%3E%3C/svg%3E" alt="UpMark Logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+    STATS BAR
+    ============================================ -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">50K+</div>
+        <div class="stat-label">Active Learners</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">120+</div>
+        <div class="stat-label">Exams Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1M+</div>
+        <div class="stat-label">Questions Solved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.8★</div>
+        <div class="stat-label">User Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  FEATURES
+  ============================================ -->
+  <div class="container" id="features">
+    <div class="section-header">
+      <div class="section-tag">Everything you need</div>
+      <h2 class="section-title">Powerful Features for Serious Aspirants</h2>
+      <p class="section-sub">From syllabus tracking to speed drills — UpMark gives you the complete toolkit to crack your dream exam.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-list-check"></i></div>
+        <h3 class="feature-title">Smart Syllabus Tracker</h3>
+        <p class="feature-desc">Track every chapter across Video, Revision, Mock, and Done stages with visual progress bars.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+        <h3 class="feature-title">AI Daily To-Do</h3>
+        <p class="feature-desc">Get a personalized study plan every day, auto-generated from your remaining syllabus.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <h3 class="feature-title">Speed Math Drills</h3>
+        <p class="feature-desc">Practice squares, cubes, tables, and arithmetic with configurable timers and difficulty.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3 class="feature-title">Smart Revision</h3>
+        <p class="feature-desc">Spaced repetition scheduler reminds you to revise at 1, 3, 7, and 15-day intervals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bug"></i></div>
+        <h3 class="feature-title">Mistake Tracker</h3>
+        <p class="feature-desc">Log errors by type — Concept, Formula, Calculation — and resolve them systematically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-book"></i></div>
+        <h3 class="feature-title">PYQ Vault</h3>
+        <p class="feature-desc">Access previous year papers and cutoff trends for Banking, SSC, WBP, NEET, JEE and more.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  TRACKER SHOWCASE
+  ============================================ -->
+  <div class="container" id="tracker">
+    <div class="tracker-showcase">
+      <div class="tracker-visual">
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px; color:var(--white-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Reasoning Ability</div>
+          <div class="tracker-subject">
+            <div class="tracker-subject-name"><i class="fas fa-puzzle-piece"></i> Puzzles & Seating</div>
+            <div class="tracker-progress">
+              <div class="tracker-bar"><div class="tracker-bar-fill" style="width:100%"></div></div>
+              <span class="tracker-pct">100%</span>
+            </div>
+          </div>
+          <div class="tracker-subject">
+            <div class="tracker-subject-name"><i class="fas fa-code-branch"></i> Coding-Decoding</div>
+            <div class="tracker-progress">
+              <div class="tracker-bar"><div class="tracker-bar-fill" style="width:75%"></div></div>
+              <span class="tracker-pct">75%</span>
+            </div>
+          </div>
+          <div class="tracker-subject">
+            <div class="tracker-subject-name"><i class="fas fa-sitemap"></i> Syllogism</div>
+            <div class="tracker-progress">
+              <div class="tracker-bar"><div class="tracker-bar-fill" style="width:50%"></div></div>
+              <span class="tracker-pct">50%</span>
+            </div>
+          </div>
+          <div class="tracker-subject">
+            <div class="tracker-subject-name"><i class="fas fa-arrows-left-right"></i> Inequality</div>
+            <div class="tracker-progress">
+              <div class="tracker-bar"><div class="tracker-bar-fill" style="width:25%"></div></div>
+              <span class="tracker-pct">25%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tracker-text">
+        <div class="section-tag" style="text-align:left;">Track every chapter</div>
+        <h3>Know exactly where you stand</h3>
+        <p>UpMark's syllabus tracker breaks every subject into chapters with four completion stages. Watch your progress climb from 0% to 100% as you study, revise, and mock.</p>
+        <ul class="check-list">
+          <li><i class="fas fa-circle-check"></i> 4-stage chapter completion</li>
+          <li><i class="fas fa-circle-check"></i> Subject-wise progress bars</li>
+          <li><i class="fas fa-circle-check"></i> Add custom chapters instantly</li>
+          <li><i class="fas fa-circle-check"></i> Overall exam readiness score</li>
+        </ul>
+        <a href="#" class="btn btn-gold"><i class="fas fa-arrow-right"></i> Explore Syllabus</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  DRILLS SHOWCASE
+  ============================================ -->
+  <div class="container" id="drills" style="margin-bottom:80px;">
+    <div class="section-header">
+      <div class="section-tag">Speed Booster</div>
+      <h2 class="section-title">Sharpen Your Calculation Speed</h2>
+      <p class="section-sub">Configurable drills for Addition, Multiplication, Squares, Cubes, Tables, Fractions and more — with real-time feedback.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" style="text-align:center; align-items:center;">
+        <div class="feature-icon" style="background:rgba(237,167,27,0.15);"><i class="fas fa-square"></i></div>
+        <h3 class="feature-title">Squares & Cubes</h3>
+        <p class="feature-desc">Memorize squares up to 100 and cubes up to 30 with quick-reference tables.</p>
+      </div>
+      <div class="feature-card" style="text-align:center; align-items:center;">
+        <div class="feature-icon" style="background:rgba(237,167,27,0.15);"><i class="fas fa-table"></i></div>
+        <h3 class="feature-title">Tables 2–100</h3>
+        <p class="feature-desc">Learn any multiplication table instantly with our interactive table browser.</p>
+      </div>
+      <div class="feature-card" style="text-align:center; align-items:center;">
+        <div class="feature-icon" style="background:rgba(237,167,27,0.15);"><i class="fas fa-divide"></i></div>
+        <h3 class="feature-title">Fractions</h3>
+        <p class="feature-desc">Convert 1/2 to 1/20 into decimals and percentages with a single glance.</p>
+      </div>
+      <div class="feature-card" style="text-align:center; align-items:center;">
+        <div class="feature-icon" style="background:rgba(237,167,27,0.15);"><i class="fas fa-calculator"></i></div>
+        <h3 class="feature-title">Timed Drills</h3>
+        <p class="feature-desc">Practice under 30, 45, or 60-second timers with live accuracy tracking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  PYQ SECTION
+  ============================================ -->
+  <div class="container" id="pyq">
+    <div class="cta-section">
+      <h2>Ready to start your <span class="text-gold">UpMark</span> journey?</h2>
+      <p>Join thousands of aspirants who are tracking smarter, revising better, and scoring higher with UpMark.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-gold"><i class="fas fa-rocket"></i> Get Started Free</a>
+        <a href="#" class="btn btn-outline"><i class="fas fa-book-open"></i> Browse PYQ Vault</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  FOOTER
+  ============================================ -->
+  <div class="container">
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%23011454'/%3E%3Ctext x='100' y='130' font-family='Arial' font-size='90' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EU%3C/text%3E%3Cpath d='M130 70 L160 45 L175 75 L155 75 L140 130 L120 130 L130 70Z' fill='%23EDA71B'/%3E%3Ctext x='100' y='175' font-family='Arial' font-size='32' font-weight='bold' fill='%23EDA71B' text-anchor='middle'%3EMark%3C/text%3E%3C/svg%3E" alt="UpMark">
+          <span class="up">Up</span><span class="mark">Mark</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Features</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        &copy; 2025 UpMark. All rights reserved. Built for aspirants, by aspirants.
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
